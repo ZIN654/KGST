@@ -4,24 +4,48 @@
 
 package KeyGenSignTool;
 
+import javax.imageio.ImageIO;
 //import java.util.*;
 import javax.swing.*;
-//import javax.swing.event.*;
+//import javax.swing.event.*
 
-public class App {
+import java.awt.*;
+import java.io.File;
+import java.net.URL;;
+
+public class App extends JFrame {
     public int CreateForm() {
-        JFrame Form1 = new JFrame("MY SECOND JFRAME");
-        JPanel Panel1 = new JPanel();
-        JLabel Text = new JLabel("Sample text");
-        Form1.setDefaultCloseOperation(3);
-        Panel1.setSize(300, 300);
-        Form1.setSize(300, 300);
+        try {
+            FlowLayout layoutmain = new FlowLayout();
+            layoutmain.setAlignment(0);
+            JFrame Form1 = new JFrame("KGST");
+            JPanel Panel1 = new JPanel();
+            JLabel Text = new JLabel("Sample text");
+            URL iconmain = getClass().getResource("/icon.png");
+            // "/C:/Users/asus/Desktop/ANDROID GROWTH/KEYSTOREGEN AND
+            // SIGNER/KeyGenSignTool/app/src/main/resources/icon.png");
+            // must use the
+            ImageIcon icon1 = new ImageIcon(iconmain);
+            Form1.setIconImage(icon1.getImage());
+            Form1.setLayout(layoutmain);
+            Form1.setDefaultCloseOperation(3);
+            Panel1.setSize(300, 300);
+            Form1.setSize(300, 300);
 
-        Form1.setVisible(true);
-        Form1.add(Panel1);
-        Panel1.add(Text);
+            Form1.setVisible(true);
+            Form1.add(Panel1);
+            Panel1.add(Text);
+
+        } catch (Exception e) {
+            JFrame Form1 = new JFrame();
+            JLabel Msg = new JLabel("Error Code unable to patch");
+            Form1.setSize(100, 100);
+            Form1.setDefaultCloseOperation(3);
+            Form1.add(Msg);
+            Form1.setVisible(true);
+
+        }
         return 1;
-
     }
 
     public static void main(String[] args) {
