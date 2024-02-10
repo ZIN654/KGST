@@ -4,16 +4,21 @@
 
 package KeyGenSignTool;
 
-import javax.imageio.ImageIO;
 //import java.util.*;
 import javax.swing.*;
-//import javax.swing.event.*
-
 import java.awt.*;
-import java.io.File;
-import java.net.URL;;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
 
-public class App extends JFrame {
+//implements ActionListener
+public class App extends JFrame implements ActionListener {
+    Button close;
+    Button close2;
+
     public int CreateForm() {
         try {
             FlowLayout layoutmain = new FlowLayout();
@@ -22,18 +27,25 @@ public class App extends JFrame {
             JPanel Panel1 = new JPanel();
             JLabel Text = new JLabel("Sample text");
             URL iconmain = getClass().getResource("/icon.png");
-            // "/C:/Users/asus/Desktop/ANDROID GROWTH/KEYSTOREGEN AND
-            // SIGNER/KeyGenSignTool/app/src/main/resources/icon.png");
-            // must use the
+            close = new Button("press mee");
+            close.addActionListener(this);
+            close2 = new Button("press mee22");
+            close2.addActionListener(this);
             ImageIcon icon1 = new ImageIcon(iconmain);
             Form1.setIconImage(icon1.getImage());
+            Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+            Form1.setLocation(screensize.width / 2, screensize.height / 2);
+
             Form1.setLayout(layoutmain);
             Form1.setDefaultCloseOperation(3);
             Panel1.setSize(300, 300);
             Form1.setSize(300, 300);
 
             Form1.setVisible(true);
+            Form1.setAlwaysOnTop(true);
             Form1.add(Panel1);
+            Form1.add(close);
+            Form1.add(close2);
             Panel1.add(Text);
 
         } catch (Exception e) {
@@ -46,6 +58,29 @@ public class App extends JFrame {
 
         }
         return 1;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        try {
+            if (e.getSource() == close) {
+                // System.out.println("this is emmited");
+                Process proc = Runtime.getRuntime().exec("java --version");
+                proc.waitFor();
+                BufferedReader bs = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+                // InputStreamReader sax = new InputStreamReader(proc.getInputStream());
+                bs.lines().forEach(System.out::println);
+
+                // out puted in characters
+            }
+            if (e.getSource() == close2) {
+                System.out.println("java --version");
+
+            }
+        } catch (Exception e2) {
+            e2.printStackTrace();
+            System.out.println(e2);
+        }
+
     }
 
     public static void main(String[] args) {
